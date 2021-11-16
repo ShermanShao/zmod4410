@@ -1,0 +1,22 @@
+
+from building import *
+import rtconfig
+
+cwd     = GetCurrentDir()
+
+src = []
+
+src     += Glob('*.c')
+CPPPATH = [cwd]
+LOCAL_CCFLAGS = ''
+
+if rtconfig.PLATFORM == 'gcc':
+    LOCAL_CCFLAGS += ' -std=c99'
+elif rtconfig.PLATFORM == 'armcc':
+    LOCAL_CCFLAGS += ' --c99'
+elif rtconfig.PLATFORM == 'armclang':
+    LOCAL_CCFLAGS += ' -std=c99'
+
+group = DefineGroup('zmod4410', src, depend = ['PKG_USING_ZMOD4410'], CPPPATH = CPPPATH, LOCAL_CCFLAGS = LOCAL_CCFLAGS)
+
+Return('group')

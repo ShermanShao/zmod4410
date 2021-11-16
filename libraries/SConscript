@@ -1,0 +1,19 @@
+Import('rtconfig')
+from building import *
+
+cwd = GetCurrentDir()
+src = Split('''
+''')
+
+LIBPATH = []
+LIBS = ['lib_iaq_2nd_gen']
+
+
+if rtconfig.CROSS_TOOL == 'gcc':
+    LIBPATH = [cwd + '/iaq_2nd_gen/Arm Cortex-M/M33/arm-none-eabi-gcc']
+elif rtconfig.CROSS_TOOL == 'keil':
+    LIBPATH = [cwd + '/iaq_2nd_gen/Arm Cortex-M/M33/armclang']
+
+group = DefineGroup('zmod4410', src, depend = ['PKG_USING_ZMOD4410'], CPPPATH = LIBPATH, LIBS = LIBS, LIBPATH=LIBPATH)
+
+Return('group')
