@@ -4,7 +4,7 @@ import rtconfig
 
 cwd     = GetCurrentDir()
 
-src = Glob('*.c')
+src = [cwd + 'zmod4xxx.c']
 CPPPATH = [cwd]
 LOCAL_CCFLAGS = ''
 
