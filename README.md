@@ -4,8 +4,7 @@
 
 zmod4410 软件包使用了空气质量传感器 `zmod4410` 的基本功能。
 
-传感器 `zmod4410` 的输入电压为 `1.7V ~ 3.6V` 范围内，[zmod4410 详细功能参数介绍](https://www2.renesas.cn/cn/zh/products/sensor-products/environmental-sensors/digital-gas-sensors/zmod4410-indoor-air-quality-sensor-platform
-)
+传感器 `zmod4410` 的输入电压为 `1.7V ~ 3.6V` 范围内，[zmod4410 详细功能参数介绍](https://www2.renesas.cn/cn/zh/products/sensor-products/environmental-sensors/digital-gas-sensors/zmod4410-indoor-air-quality-sensor-platform)
 
 ## 支持情况
 
@@ -40,6 +39,14 @@ RT-Thread online packages  --->
 ```
 
 **Version**：软件包版本选择，默认选择最新版本。
+
+由于软件包中使用了 libc 库的 API，需要勾选 libc 组件。
+
+```shell
+-> RT-Thread Components
+      -> POSIX layer and C standard library
+       [*] Enable libc APIs from the toolchain
+```
 
 ### 使用软件包
 

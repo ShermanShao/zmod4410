@@ -115,7 +115,7 @@ int8_t init_hardware(zmod4xxx_dev_t *dev)
     i2c_bus = (struct rt_i2c_bus_device *)rt_device_find(ZMOD4410_NAME);
     if(i2c_bus == RT_NULL)
     {
-        rt_kprintf("can't find %s device!\n", ZMOD4410_NAME);
+        LOG_E("can't find %s device!", ZMOD4410_NAME);
         return ERROR_NULL_PTR;
     }
 
@@ -125,16 +125,16 @@ int8_t init_hardware(zmod4xxx_dev_t *dev)
 
     /* init */
     rt_uint32_t pin = rt_pin_get(USER_INPUT);
-    rt_kprintf("\n pin number : 0x%04X \n", pin);
+    LOG_I("is_key pin: 0x%04X", pin);
     rt_err_t err = rt_pin_attach_irq(pin, PIN_IRQ_MODE_RISING, irq_callback, RT_NULL);
     if(RT_EOK != err)
     {
-        rt_kprintf("\n attach irq failed. \n");
+        LOG_E("\n attach irq failed.");
     }
     err = rt_pin_irq_enable(pin, PIN_IRQ_ENABLE);
     if(RT_EOK != err)
     {
-        rt_kprintf("\n enable irq failed. \n");
+        LOG_E("\n enable irq failed.");
     }
     return ZMOD4XXX_OK;
 }
